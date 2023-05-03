@@ -10,10 +10,13 @@
     --bold-weight: 400;
 
     --background-color: #f5f5f5;
-    --primary-color: #ffd900;
+    --primary-color: #ffb700;
+    --dark-test-color: #1a1a1a;
     --secondary-color: #433ca7;
     --inverse-color: #f5f5f5;
     --border-color: #a9a9a9;
+    --warning-color: #f05252;
+    --element-color: #e4e4e4;
 }
 
 /* Global Styles */
@@ -62,6 +65,19 @@ body {
 
 .navitem:hover {
     color: var(--primary-color);
+}
+
+.username, .username:hover {
+    font-family: var(--bold-font);
+    font-weight: var(--bold-weight);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.logout:hover {
+    color: var(--warning-color);
+    cursor: pointer;
 }
 
 .title {
@@ -139,4 +155,94 @@ input::placeholder {
     font-weight: 500;
     margin: 0.5rem 0;
     width: 25em;
+}
+
+/* Dashboard */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: var(--mono-font);
+    flex: 1;
+    width: 90%;
+}
+
+.dashboard h1 {
+    font-family: var(--title-font);
+    font-weight: var(--title-weight);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard p {
+    font-family: var(--bold-font);
+    font-weight: var(--bold-weight);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.controlls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.controlsection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 .3rem;
+}
+
+a.control {
+    text-decoration: none;
+    color: var(--inverse-color);
+    font-family: var(--bold-font);
+    font-weight: var(--bold-weight);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: .1em;
+    border-radius: 0.5rem;
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.profileImage {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background: var(--primary-color);
+    font-size: 2em;
+    color: var(--dark-text-color);
+    text-align: center;
+    line-height: 2em;
+    margin: 0 .3em;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    margin: 1rem 0;
+    background-color: var(--element-color);
+    border-radius: 0.5rem;
+    padding: .5rem;
+}
+
+.grouptitle {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+a.control:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-test-color);
 }

@@ -1,7 +1,14 @@
 <div class="header">
     <a class="titlelink" href="/"><h1 class="title">Turfie</h1></a>
+    
     <div class="nav">
-        <a class="navitem" href="/register">Register</a>
+        {% if logged_in %}
+        <span class="navitem username">Hi {{logged_in}}</span>
+        <a class="navitem" href="/dashboard">Dashboard</a>
+        <a class="navitem logout" href="/logout">Logout</a>
+        {% else %}
         <a class="navitem" href="/login">Login</a>
+        <a class="navitem" href="/register">Register</a>
+        {% endif %}
     </div>
 </div>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1><span>{{logged_in}}</span>, welcome</h1>
+    <div class="controlls">
+        <div class="controlsection">
+            <a class="control" href="/create">Create a new group</a>
+            <a class="control" href="/join">Join a group</a>
+        </div>
+        <div class="controlsection">
+            <a class="control" href="/change_password">Change your password</a>
+        </div>
+    </div>
+    <div class="groups">
+        <h2>Your groups</h2>
+        {% if not groups or groups == [] %}
+        <p>You are not a member of any groups</p>
+        {% endif %}
+        {% for group in groups %}
+        <div class="group">
+            {% include 'components/group.html'%}
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

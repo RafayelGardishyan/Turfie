@@ -28,7 +28,13 @@ class User(Model):
 
 class Group(Model):
     name = fields.CharField(max_length=20, unique=True)
-    users = fields.ManyToManyField('models.User', related_name='groups')
+    users = fields.ManyToManyField('models.User', related_name='users')
+
+    def get_slug(self):
+        return self.name.lower().replace(' ', '-')
+    
+    def get_letter(self):
+        return self.name[0].upper()
 
     def __str__(self) -> str:
         return self.name
