@@ -1,0 +1,142 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --title-font: 'Poppins', sans-serif;
+    --bold-font: 'Poppins', sans-serif;
+    --mono-font: 'DM Mono', monospace;
+
+    --title-weight: 600;
+    --bold-weight: 400;
+
+    --background-color: #f5f5f5;
+    --primary-color: #ffd900;
+    --secondary-color: #433ca7;
+    --inverse-color: #f5f5f5;
+    --border-color: #a9a9a9;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.boldtext {
+    font-family: var(--bold-font);
+    font-weight: var(--title-weight);
+}
+
+/* Navbar */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navitem {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: var(--inverse-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: var(--bold-font);
+    font-weight: var(--bold-weight);
+}
+
+.navitem:hover {
+    color: var(--primary-color);
+}
+
+.title {
+    font-family: var(--title-font);
+    font-weight: var(--title-weight);
+}
+
+.titlelink {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.titlelink:hover {
+    color: var(--inverse-color);
+}
+
+/* Main */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: var(--mono-font);
+    flex: 1;
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--inverse-color);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-family: var(--bold-font);
+    font-weight: var(--bold-weight);
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 0.5rem;
+    border: 2px solid var(--border-color);
+    font-family: var(--mono-font);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 15em;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid var(--primary-color);
+}
+
+input::placeholder {
+    color: var(--border-color);
+}
+
+.error {
+    color: red;
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    width: 25em;
+}

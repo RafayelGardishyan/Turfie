@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "turfie"
+version = "0.1.0"
+description = "Simple application to keep track of the so called 'turfjes'"
+authors = ["RafayelGardishyan <rgardishyan@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tortoise-orm = "^0.19.3"
+flask = "^2.3.2"
+asgiref = "^3.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
