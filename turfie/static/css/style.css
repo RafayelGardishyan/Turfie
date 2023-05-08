@@ -67,7 +67,8 @@ body {
     color: var(--primary-color);
 }
 
-.username, .username:hover {
+.username,
+.username:hover {
     font-family: var(--bold-font);
     font-weight: var(--bold-weight);
     font-size: 1.2rem;
@@ -139,6 +140,24 @@ input {
     width: 15em;
 }
 
+input[type=submit] {
+    background-color: var(--secondary-color);
+    color: var(--inverse-color);
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    width: 15em;
+}
+
+input[type=submit]:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-test-color);
+    cursor: pointer;
+}
+
 input:focus {
     outline: none;
     border: 2px solid var(--primary-color);
@@ -146,6 +165,27 @@ input:focus {
 
 input::placeholder {
     color: var(--border-color);
+}
+
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 0.5rem;
+    border: 2px solid var(--border-color);
+    font-family: var(--mono-font);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 15em;
+    resize: none;
+    height: 5em;
+}
+
+textarea:focus {
+    outline: none;
+    border: 2px solid var(--primary-color);
 }
 
 .error {
@@ -221,7 +261,26 @@ a.control {
     color: var(--dark-text-color);
     text-align: center;
     line-height: 2em;
-    margin: 0 .3em;
+    margin-right: .3em;
+}
+
+.smallProfileImage {
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+    background: var(--primary-color);
+    font-size: 1.5em;
+    color: var(--dark-text-color);
+    text-align: center;
+    line-height: 1.8em;
+    margin-right: .35em;
+}
+
+.groupcontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: center;
 }
 
 .group {
@@ -229,10 +288,10 @@ a.control {
     flex-direction: column;
     align-items: end;
     justify-content: center;
-    margin: 1rem 0;
+    margin: 1rem 1rem;
     background-color: var(--element-color);
     border-radius: 0.5rem;
-    padding: .5rem;
+    padding: .2rem;
 }
 
 .grouptitle {
@@ -245,4 +304,149 @@ a.control {
 a.control:hover {
     background-color: var(--primary-color);
     color: var(--dark-test-color);
+}
+
+/* Group members page */
+
+hr {
+    width: 70%;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: var(--mono-font);
+    flex: 1;
+    width: 100%;
+}
+
+.groupmembers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+}
+
+.memberrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--element-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.turfcontrol {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    margin-left: 1rem;
+}
+
+button {
+    font-family: var(--bold-font);
+    font-weight: var(--bold-weight);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: .1em;
+    border-radius: 0.5rem;
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease;
+    border: none;
+    color: var(--inverse-color);
+}
+
+button:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-test-color);
+}
+
+.turfmodal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    padding: 1rem;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalcontent {
+    background-color: var(--inverse-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 5px solid var(--secondary-color);
+    border-radius: 1rem;
+    width: 30%;
+
+}
+
+.close {
+    color: var(--dark-test-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modalheader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+table.turfhistory {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+table.turfhistory th {
+    background-color: var(--element-color);
+    padding: 8px;
+}
+
+table.turfhistory td {
+    padding: 8px;
+    text-align: center;
+}
+
+.usertable {
+    width: 20%;
+}
+
+.group_toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.myturfcount {
+    margin-right: 1em;
+}
+
+.fade {
+    width: 70%;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }

@@ -3,5 +3,10 @@
         <div class="profileImage">{{group.get_letter()}}</div>
         <h2>{{group.name}}</h2>
     </div>
-    <a class="control" href="/group/{{group.get_slug()}}">Open</a>
+    <div class="group_toolbar">
+        <div class="myturfcount">
+            My turf count: {{ group.mycount }}
+        </div>
+        <a class="control" href="/group/{{group.id}}">Open</a>
+    </div>
 </div>

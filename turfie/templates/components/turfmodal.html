@@ -1,0 +1,18 @@
+<div class="turfmodal" id="turffor-{{user.0.id}}">
+    <div class="modalcontent">
+        <div class="modalheader">
+            <h2>Add a turf</h2>
+            <span class="close" id="close-{{user.0.id}}">&times;</span>
+        </div>
+        <form action="/turf/add?group_redirect={{group.id}}" method="post">
+            <input type="hidden" name="groupid" id="groupid" value="{{group.id}}">
+            <input type="hidden" name="registered_by" id="registered_by" value="{{logged_in.id}}">
+            <input type="hidden" name="for_user" id="for_user" value="{{user.0.id}}">
+            <label for="for_user">For</label>
+            <input type="text" name="for_user" id="for_user" disabled value="{{user.0.username}}">
+            <label for="reason">Reason</label>
+            <textarea name="reason" id="reason" placeholder="Too late for the activity"></textarea>
+            <input type="submit" name="submit" id="submit" value="Register">
+        </form>
+    </div>
+</div>

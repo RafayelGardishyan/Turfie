@@ -19,12 +19,15 @@
         {% if not groups or groups == [] %}
         <p>You are not a member of any groups</p>
         {% endif %}
-        {% for group in groups %}
-        <div class="group">
-            {% include 'components/group.html'%}
+        <div class="groupcontainer">
+            {% for group in groups %}
+            <div class="group">
+                {% include 'components/group.html'%}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
+</div>
 
 </div>
 {% endblock %}

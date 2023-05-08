@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}{{group.name}}{% endblock %}
+{% block content %}
+<script src="/static/js/groupdashboard.js"></script>
+<div class="container">
+    <h1>{{group}}</h1>
+    <hr>
+    <h2>Members</h2>
+    <div class="groupmembers">
+        {% for user in user_turf_counts %}
+        <div class="memberrow">
+            <div class="smallProfileImage">{{user.2}}</div>
+            <div>{{user.0.username}}</div>
+            <div class="turfcontrol"><button>-</button>{{user.1}}<button onclick="openmodal({{user.0.id}})">+</button>
+            </div>
+        </div>
+        {% include 'components/turfmodal.html' %}
+        {% endfor %}
+    </div>
+    <h2>History</h2>
+    <div class="fade">
+        <table class="turfhistory">
+            <tr>
+                <th class="usertable">For</th>
+                <th class="usertable">Registered by</th>
+                <th class="reasontable">Reason</th>
+            </tr>
+            {% for turf in turf_history %}
+            <tr>
+                <td>{{turf.for_user}}</td>
+                <td>{{turf.registered_by}}</td>
+                <td>{{turf.reason}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
