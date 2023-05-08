@@ -33,6 +33,7 @@ class User(Model):
 class Group(Model):
     name = fields.CharField(max_length=20, unique=True)
     users = fields.ManyToManyField('models.User', related_name='users')
+    admin = fields.ForeignKeyField('models.User', related_name='admin')
 
     def get_slug(self):
         return self.name.lower().replace(' ', '-')
@@ -59,6 +60,68 @@ class Group(Model):
                 if quser.username == user.username:
                     finalgroups.append(group)
         return finalgroups
+
+def Notification(Model):
+    user = fields.ForeignKeyField('models.User', related_name='notification_user')
+    message = fields.CharField(max_length=100)
+    goto_path = fields.CharField(max_length=100)
+
+    async def get_notifications_by_user(user):
+        return await Notification.filter(user=user)
+    
+    async def read(self):
+        await self.delete()
+
+    def __str__(self) -> str:
+        return self.message
+    
+class JoinRequest(Model):
+    user = fields.ForeignKeyField('models.User', related_name='join_request_user')
+    group = fields.ForeignKeyField('models.Group', related_name='join_request_group')
+
+    async def approve(self):
+        await self.group.users.add(self.user)
+        await self.group.save()
+        n = Notification(user=self.user, message=f'Your request to join {self.group} has been approved!', goto_path=f'/group/{self.group.get_slug()}/')
+        await n.save()
+        await self.delete()
+
+    async def deny(self):
+        n = Notification(user=self.user, message=f'Your request to join {self.group} has been denied!', goto_path=f'/group/{self.group.get_slug()}/')
+        await n.save()
+        await self.delete()
+
+    async def get_join_requests_by_group(group):
+        requests = await JoinRequest.all()
+        if type(requests) == JoinRequest:
+            requests = [requests]
+
+        finalrequests = []
+        
+        for request in requests:
+            if request.group.name == group.name:
+                finalrequests.append(request)
+        return finalrequests
+    
+    async def get_join_requests_by_user(user):
+        requests = await JoinRequest.all()
+        if type(requests) == JoinRequest:
+            requests = [requests]
+
+        finalrequests = []
+        
+        for request in requests:
+            if request.user.username == user.username:
+                finalrequests.append(request)
+        return finalrequests
+    
+    async def save(self):
+        n = Notification(user=self.group.admin, message=f'{self.user} wants to join {self.group}!', goto_path=f'/joinrequest/{self.id}/')
+        await n.save()
+        await super().save()
+    
+    def __str__(self) -> str:
+        return f'{self.user} wants to join {self.group}!'
 
 class Turf(Model):
     for_user = fields.ForeignKeyField('models.User', related_name='turf_owner')
@@ -98,5 +161,10 @@ class Turf(Model):
 
         return turf_history
     
+    async def save(self):
+        n = Notification(user=self.for_user, message=f'You have been turfed for {self.reason} by {self.registered_by}!', goto_path=f'/group/{self.group.get_slug()}/')
+        await n.save()
+        await super().save()
+
     def __str__(self) -> str:
         return f'Turf: {self.for_user} for {self.reason} by {self.registered_by} (Group: {self.group})'

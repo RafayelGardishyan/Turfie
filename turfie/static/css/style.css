@@ -430,6 +430,14 @@ table.turfhistory td {
     text-align: center;
 }
 
+table.turfhistory th:first-child{
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+table.turfhistory th:last-child{
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
 .usertable {
     width: 20%;
 }
