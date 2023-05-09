@@ -19,6 +19,7 @@ The tech stack used in this application is
 ## Some notes
 This application is meant as a side project and is by no means ready for production use. The DB for instance is not safe for SQL injections and the forms are not validated with a CSRF token.
 The interface of the application works well on a desktop browser, but at the current state it is unusable on a mobile device with the screen size of a smartphone.
+Code quality is bad, you can even call it spaghetticode if you want.
 
 ## Contributing
 If you want to improve the application or you have spotted a bug, fork the repo and create pull request.
