@@ -1,0 +1,16 @@
+<div class="turfmodal" id="creategroupmodal">
+    <div class="modalcontent">
+        <div class="modalheader">
+            <h2>Create a new group</h2>
+            <span id="close" class="close">&times;</span>
+        </div>
+        <div class="modalbody">
+            <form action="/creategroup" method="post">
+                <input type="hidden" name="admin_id" value="{{logged_in.id}}">
+                <label for="group_name">Group name</label>
+                <input type="text" name="group_name" id="groupname" placeholder="The Boys" required>
+                <input type="submit" value="Create group">
+            </form>
+        </div>
+    </div>
+</div>

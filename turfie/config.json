@@ -20,5 +20,15 @@
             "!@#$%^&*()_+"
         ],
         "register_error_message": "Password must be between 8 and 30 characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character"
+    },
+    "group_name": {
+        "min_length": 3,
+        "max_length": 20,
+        "not_contains": [
+            "\t",
+            "\n",
+            "!@#$%^&*()_+[]{};':\",./<>?\\|`~-="
+        ],
+        "register_error_message": "Group name must be between 3 and 20 characters long and contain only alphanumeric characters and spaces"
     }
 }

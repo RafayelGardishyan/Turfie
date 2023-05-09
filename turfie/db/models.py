@@ -25,7 +25,7 @@ class User(Model):
     
     async def save(self, *args, **kwargs):
         self.password = self.encode_password(self.password)
-        await super().save()
+        await super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return self.username
@@ -61,9 +61,9 @@ class Group(Model):
                     finalgroups.append(group)
         return finalgroups
 
-def Notification(Model):
-    user = fields.ForeignKeyField('models.User', related_name='notification_user')
-    message = fields.CharField(max_length=100)
+class Notification(Model):
+    user = fields.ForeignKeyField('models.User')
+    message = fields.CharField(max_length=255)
     goto_path = fields.CharField(max_length=100)
 
     async def get_notifications_by_user(user):
@@ -80,14 +80,17 @@ class JoinRequest(Model):
     group = fields.ForeignKeyField('models.Group', related_name='join_request_group')
 
     async def approve(self):
-        await self.group.users.add(self.user)
-        await self.group.save()
-        n = Notification(user=self.user, message=f'Your request to join {self.group} has been approved!', goto_path=f'/group/{self.group.get_slug()}/')
-        await n.save()
+        group = await self.group
+        user = await self.user.get()
+        await group.users.add(user)
+        await group.save()
+        Notification.create(user=self.user, message=f'Your request to join {group} has been approved!', goto_path=f'/group/{group.id}')
         await self.delete()
 
     async def deny(self):
-        n = Notification(user=self.user, message=f'Your request to join {self.group} has been denied!', goto_path=f'/group/{self.group.get_slug()}/')
+        group = await self.group
+        user = await self.user
+        n = Notification(user=user, message=f'Your request to join {group} has been denied!', goto_path=f'/dashboard')
         await n.save()
         await self.delete()
 
@@ -115,11 +118,14 @@ class JoinRequest(Model):
                 finalrequests.append(request)
         return finalrequests
     
-    async def save(self):
-        n = Notification(user=self.group.admin, message=f'{self.user} wants to join {self.group}!', goto_path=f'/joinrequest/{self.id}/')
-        await n.save()
-        await super().save()
-    
+    async def save(self, *args, **kwargs):
+        await super().save(*args, **kwargs)
+        print(await self.group.filter())
+        group = await self.group
+        admin = await group.admin.get()
+        await Notification.create(user=admin, message=f'@{self.user} wants to join {self.group}!', goto_path=f'/joinrequest/{self.id}')
+        await Notification.create(user=self.user, message=f'Your request to join {self.group} has been sent!', goto_path=f'/joinrequest/{self.group.id}')        
+        
     def __str__(self) -> str:
         return f'{self.user} wants to join {self.group}!'
 
@@ -161,10 +167,10 @@ class Turf(Model):
 
         return turf_history
     
-    async def save(self):
-        n = Notification(user=self.for_user, message=f'You have been turfed for {self.reason} by {self.registered_by}!', goto_path=f'/group/{self.group.get_slug()}/')
+    async def save(self, *args, **kwargs):
+        n = Notification(user=self.for_user, message=f'You have been turfed for \"{self.reason}\" by @{self.registered_by} in {self.group}!', goto_path=f'/group/{self.group.id}')
         await n.save()
-        await super().save()
+        await super().save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f'Turf: {self.for_user} for {self.reason} by {self.registered_by} (Group: {self.group})'
+        return f'Turf: @{self.for_user} for {self.reason} by @{self.registered_by} (Group: {self.group})'

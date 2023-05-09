@@ -16,6 +16,9 @@
     --inverse-color: #f5f5f5;
     --border-color: #a9a9a9;
     --warning-color: #f05252;
+    --warning-dark-color: #cd2626;
+    --success-color: #4caf50;
+    --success-dark-color: #1c581e;
     --element-color: #e4e4e4;
 }
 
@@ -286,7 +289,7 @@ a.control {
 .group {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: start;
     justify-content: center;
     margin: 1rem 1rem;
     background-color: var(--element-color);
@@ -430,11 +433,11 @@ table.turfhistory td {
     text-align: center;
 }
 
-table.turfhistory th:first-child{
+table.turfhistory th:first-child {
     border-radius: 0.5rem 0 0 0.5rem;
 }
 
-table.turfhistory th:last-child{
+table.turfhistory th:last-child {
     border-radius: 0 0.5rem 0.5rem 0;
 }
 
@@ -455,6 +458,163 @@ table.turfhistory th:last-child{
 
 .fade {
     width: 70%;
-    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+}
+
+.joinbutton {
+    /* Align the text in the center vertically */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.notificationcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+
+.notification {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem;
+    background-color: var(--element-color);
+    border-radius: 0.5rem;
+    margin-bottom: .5em;
+    width: 100%;
+}
+
+.notification p {
+    margin-right: 1em;
+}
+
+.notification button {
+    color: var(--dark-test-color);
+    background-color: rgba(0, 0, 0, 0.0);
+    padding: .3em;
+}
+
+.notification button:hover {
+    color: var(--inverse-color);
+    background-color: var(--dark-test-color);
+}
+
+.notification-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorbox,
+.messagebox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: .8rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.errorbox p,
+.messagebox p {
+    font-family: var(--mono-font);
+    font-size: .8rem;
+    margin: 0;
+}
+
+.errorbox {
+    background-color: var(--warning-color);
+    color: var(--inverse-color);
+}
+
+.messagebox {
+    background-color: var(--success-color);
+    color: var(--inverse-color);
+}
+
+.element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: .8rem;
+    border-radius: 0.5rem;
+    margin-bottom: .5rem;
+    background-color: var(--element-color);
+}
+
+.joinrequest p {
+    margin-right: .5em;
+}
+
+#acceptjr {
+    color: var(--inverse-color);
+    background-color: var(--success-color);
+    padding: .5em;
+}
+
+.memberbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem;
+    border-radius: 0.5rem;
+    margin-bottom: .5em;
+    width: 100%;
+}
+
+.member {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.membername {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#acceptjr:hover {
+    background-color: var(--success-dark-color);
+}
+
+#declinejr {
+    color: var(--inverse-color);
+    background-color: var(--warning-color);
+    padding: .5em;
+}
+
+#declinejr:hover {
+    background-color: var(--warning-dark-color);
+}
+
+.controlsjr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.joingroupname {
+    margin-right: 1em;
 }

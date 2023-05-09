@@ -39,3 +39,14 @@ def validate_password(password: str) -> bool:
             return False
         
     return validate_string_length(password, config['password']['min_length'], config['password']['max_length'])
+
+def validate_group_name(group_name: str) -> bool:
+    """
+    Validates a group name
+    """
+
+    for element in config['group_name']['not_contains']:
+        if check_contains(group_name, element):
+            return False
+
+    return validate_string_length(group_name, config['group_name']['min_length'], config['group_name']['max_length'])

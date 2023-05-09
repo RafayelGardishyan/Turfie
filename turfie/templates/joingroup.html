@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<script>
+    const groups = {{groups}};
+</script>
+
+<div class="groupsearcher">
+    <div class="searchbox">
+        <input type="text" name="query" placeholder="Search for groups">
+        <button>Search</button>
+    </div>
+    <div class="groups">
+        <h2>Search results</h2>
+        <div class="groupcontainer">
+            {% for group in groups %}
+            <div class="group">
+                {% include 'components/group_join.html'%}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

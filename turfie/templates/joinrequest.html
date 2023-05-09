@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Join request{% endblock %}
+{% block content %}
+<div class="joinrequest">
+    <h1>Join request</h1>
+    <p><b>@{{joinuser}}</b> wants to join <b>{{group}}</b></p>
+    <p>Status: <span class="greyblock">PENDING</span></p>
+    {% if admin %}
+    <div class="controlsjr">
+        <form action="" method="post">
+            <input type="hidden" name="action" value="accept">
+            <button class="control" id="acceptjr" type="submit">Accept</button>
+        </form>
+        <form action="" method="post">
+            <input type="hidden" name="action" value="decline">
+            <button class="control" id="declinejr" type="submit">Decline</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

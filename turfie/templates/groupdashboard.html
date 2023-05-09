@@ -5,7 +5,11 @@
 <div class="container">
     <h1>{{group}}</h1>
     <hr>
-    <h2>Members</h2>
+    <h2>Members {% if admin%} <a href="/group/{{group.id}}/members" class="control">Manage</a>{% endif %}</h2>
+    <br>
+    {% if user_turf_counts|length == 0 %}
+    <p>There are no members in this group</p>
+    {% endif %}
     <div class="groupmembers">
         {% for user in user_turf_counts %}
         <div class="memberrow">
@@ -16,9 +20,15 @@
         </div>
         {% include 'components/turfmodal.html' %}
         {% endfor %}
+        <button onclick="copyInviteLink({{group.id}})" id="inviteButton" class=" control joinbutton">Invite others
+        </button>
     </div>
+    <br>
     <h2>History</h2>
     <div class="fade">
+        {% if turf_history|length == 0 %}
+        <p>There are no turfs yet</p>
+        {% else %}
         <table class="turfhistory">
             <tr>
                 <th class="usertable">For</th>
@@ -33,6 +43,7 @@
             </tr>
             {% endfor %}
         </table>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

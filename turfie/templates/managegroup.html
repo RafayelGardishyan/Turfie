@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Manage group{% endblock %}
+{% block content %}
+<div class="groupmanager">
+    <h1>{{group.name}}</h1>
+    {% if joinrequests|length > 0 %}
+    <h2>Join Requests</h2>
+    <div>
+        {% for request in joinrequests %}
+        <div class="joinrequest element">
+            <p><b>@{{ request.user }}</b> wants to join <b>{{group}}</b></p>
+            <a href="/joinrequest/{{request.request.id}}" class="control">Go to request</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <br>
+    <h2>Members</h2>
+    <div class="memberbox">
+        {% for member in gusers %}
+        <div class="member element">
+            <div class="membername">
+            <div class="smallProfileImage">{{member.get_letter()}}</div>
+            <p>{{member}}</p>
+            </div>
+            <a class="control" href="/group/{{group.id}}/removemember/{{member.id}}">Remove</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

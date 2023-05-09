@@ -1,9 +1,5 @@
-from .models import Group, User
-from tortoise import Tortoise, run_async
-from tortoise.expressions import Q
-
-
-from .models import Turf, set_config
+from tortoise import Tortoise
+from .models import set_config
 
 async def init(config):
     set_config(config)
@@ -11,4 +7,5 @@ async def init(config):
         db_url='sqlite://db.sqlite3',
         modules={'models': ['turfie.db.models']}
     )
+    # await Tortoise._drop_databases()
     await Tortoise.generate_schemas()

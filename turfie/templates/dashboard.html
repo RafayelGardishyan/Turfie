@@ -3,12 +3,24 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
+{% include 'components/creategroupmodal.html' %}
+<script src="/static/js/dashboard.js" ></script>
 <div class="dashboard">
+    {% if message %}
+    <div class="messagebox">
+        <p>{{message}}</p>
+    </div>
+    {% endif %}
+    {% if error %}
+    <div class="errorbox">
+        <p><b>Error:</b>{{error}}</p>
+    </div>
+    {% endif %}
     <h1><span>{{logged_in}}</span>, welcome</h1>
     <div class="controlls">
         <div class="controlsection">
-            <a class="control" href="/create">Create a new group</a>
-            <a class="control" href="/join">Join a group</a>
+            <button onclick="opengroupcreatemodal()" class="control" >Create a new group</button>
+            <a class="control" href="/joingroup">Join a group</a>
         </div>
         <div class="controlsection">
             <a class="control" href="/change_password">Change your password</a>
